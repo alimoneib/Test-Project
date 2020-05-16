@@ -1,9 +1,8 @@
 const express = require('express');
-
 const gamesRouter = express.Router();
-// const passport = require('passport');
-// const JWT = require('jsonwebtoken');
-// const passportConfig = require('../passport');
+
+const verify = require('./verifyToken');
+
 const Game = require('../models/game');
 
 gamesRouter.get('/', (req, res) => {
@@ -27,7 +26,7 @@ gamesRouter.get('/:id', (req, res) => {
   });
 });
 
-gamesRouter.post('/add', (req, res) => {
+gamesRouter.post('/add', verify, (req, res) => {
   const addedGame = new Game(req.body);
   addedGame.save().then((game) => {
     res.status(200).json(game).send({ message: 'Game added successfully' });
