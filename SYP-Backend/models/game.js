@@ -5,30 +5,68 @@ let Game = new Schema({
     title: {
         type: String
     },
+    alternativeTitles: [{
+        type: String
+    }],
+    description: {
+        type: String
+    },
     release: {
         type: Date
     },
-    genre: {
-        type: String
-    },
-    developer: {
-        type: String
-    },
-    director: {
-        type: String
-    },
-    publisher: {
-        type: String
-    },
-    coverArt: {
-        type: String
-    },
-    backgroundArt: {
-        type: String
-    },
     avgRating: {
         type: Number
-    }
+    },
+    series: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Series',
+        default: null
+    },
+    developer: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Company'
+    }],
+    designer: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Personel'
+    }],
+    publisher: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Company'
+    }],
+    genre: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Genre'
+    }],
+    favouritedBy: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
+    }],
+    platforms: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Platform'
+    }],
+    reviews: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Review'
+    }],
+    gameEngine: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Engine'
+    }],
+    reccommendations: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Game'
+    }],
+    ageRatings: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Rating'
+    }],
+    listEntries: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'List'
+    }]
+
 });
 
 module.exports = mongoose.model('Game', Game);

@@ -3,11 +3,9 @@ const usersRouter = express.Router();
 
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken');
-
-const User = require('../models/user');
-
 const { registerValidation, loginValidation } = require('../validation');
 
+const User = require('../models/user');
 
 
 usersRouter.post('/register', async (req, res) => {
@@ -44,7 +42,7 @@ usersRouter.post('/login', async (req, res) => {
     return res.status(400).send(validationResult.error.details[0].message);
   }
  
-  const user = await User.findOne({ $or: [{'username':req.body.username}, {'email':req.body.email}] });
+  const user = await User.findOne({ $or: [{'username':req.body.email}, {'email':req.body.email}] });
   if (!user) {
     return res.status(400).send("Email or Username are incorrect");
   }
@@ -55,10 +53,9 @@ usersRouter.post('/login', async (req, res) => {
   }
 
   const token = jwt.sign({ _id: user._id }, process.env.TOKEN_SECRET);
-  res.header('auth-token', token).send(token);  
+  res.header('auth-token', token).status(200).send({token: token, _id: user._id });  
 
 })
-
 
 usersRouter.get('/:id', (req, res) => {
   const { id } = req.params;

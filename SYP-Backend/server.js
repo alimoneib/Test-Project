@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+const cors = require('cors');
 const PORT = 4000;
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
@@ -12,6 +13,7 @@ const userRouter = require('./routes/users');
 
 //Middleware
 app.use(express.json());
+app.use(cors());
 
 //Connect to Database
 mongoose.connect(process.env.DB_CONNECT, { useNewUrlParser: true, useUnifiedTopology: true });
