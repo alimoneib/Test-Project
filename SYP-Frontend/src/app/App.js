@@ -4,19 +4,18 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import HomePage from './components/homepage.js'
 import Navbar from './components/navbar.js';
 import GameList from './components/gameList.js';
-import NewUser from './components/newUser.js';
-
+import User from './components/user.js';
 
 function App() {
   return (
-    <Router>
-      <Navbar />
-      <Switch>
-        <Route path="/" exact component={HomePage}/>
-        <Route path="/games/allGames" exact component={GameList}/>
-        <Route path="/users/:id" exact component={NewUser}/>
-      </Switch>
-    </Router>
+      <Router>
+        <Navbar />
+        <Switch>
+          <Route path="/" exact component={HomePage}/>
+          <Route path="/games/allGames" exact component={GameList}/>
+          <Route path="/users/:id" exact component={User}/>
+        </Switch>
+      </Router>
   );
 }
 

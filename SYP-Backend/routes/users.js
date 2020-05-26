@@ -1,9 +1,11 @@
 const express = require('express');
 const usersRouter = express.Router();
-
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken');
+
 const { registerValidation, loginValidation } = require('../validation');
+
+const auth = require('../middleware/auth');
 
 const User = require('../models/user');
 
@@ -30,7 +32,13 @@ usersRouter.post('/register', async (req, res) => {
     });
 
   await newUser.save().then((user) => {
-    res.status(200).json({ user: user._id });
+    jwt.sign({ _id: user._id }, process.env.SECRET_OR_KEY, (err, token) => {
+      if(err){
+        throw err
+      } else {
+        res.status(200).json({ token, user: user._id });
+      }
+    })
   }).catch((err) => {
     res.status(400).send(err);
   });
@@ -38,10 +46,11 @@ usersRouter.post('/register', async (req, res) => {
 
 usersRouter.post('/login', async (req, res) => {
   const validationResult = loginValidation(req.body);
+
   if (validationResult.error) {
     return res.status(400).send(validationResult.error.details[0].message);
   }
- 
+
   const user = await User.findOne({ $or: [{'username':req.body.email}, {'email':req.body.email}] });
   if (!user) {
     return res.status(400).send("Email or Username are incorrect");
@@ -52,20 +61,21 @@ usersRouter.post('/login', async (req, res) => {
     return res.status(400).send("Password is incorrect");
   }
 
-  const token = jwt.sign({ _id: user._id }, process.env.TOKEN_SECRET);
-  res.header('auth-token', token).status(200).send({token: token, _id: user._id });  
+  const jwtPayload = { _id: user._id };
+
+  jwt.sign(jwtPayload, process.env.SECRET_OR_KEY, (err,token) => {
+    res.json({ token, user: user._id });
+  });
 
 })
 
-usersRouter.get('/:id', (req, res) => {
+usersRouter.get('/:id', auth, (req, res) => {
   const { id } = req.params;
-  User.findById(id, (err, user) => {
-    if (err) {
-      console.log(err);
-    } else {
-      res.json(user);
-    }
-  });
+  
+  User.findById(id)
+  .select('-password')
+  .then(user => res.json(user));
 });
+
 
 module.exports = usersRouter;

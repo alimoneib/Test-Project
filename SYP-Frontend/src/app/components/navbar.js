@@ -7,11 +7,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUser, faGhost } from '@fortawesome/free-solid-svg-icons'
 import logo from '../../logo512.png'
 
-import {useSelector} from 'react-redux';
-
 import "bootstrap/dist/css/bootstrap.min.css";
 import './components.css';
-import LoginAndRegisteration from './loginAndRegisteration';
+import LoginModal from './loginModal';
 
 const padding = {
     paddingLeft: 30,
@@ -19,13 +17,22 @@ const padding = {
     marginBottom: 50
 };
 
-
 export default class NavbarClass extends Component {
     constructor(props){
-        super(props)
+        super(props);
+
+        this.state={
+            modalFlag: false,
+        }
 
 
     }
+
+    toggleModal = e => {
+        this.setState({
+            modalFlag: !this.state.modalFlag
+          });      
+      };
     
     render(){
     return (
@@ -58,18 +65,20 @@ export default class NavbarClass extends Component {
 
                 </Nav>
                 <Nav>
-                {/* { isLoggedIn ? 
+                { this.state.isLoggedIn ? 
                     <Button variant="transparent" size='lg'>
                         <FontAwesomeIcon size='lg' color="white" icon={faGhost}/>
                     </Button>
                     : 
-                    <Button variant="transparent" size='lg'>
+                    <Button variant="transparent" size='lg' onClick={this.toggleModal}>
                         <FontAwesomeIcon size='lg' color="white" icon={faUser}/>
                     </Button> 
-                } */}
+                }
                 </Nav>
                 </Navbar.Collapse>
             </Navbar>
+            <LoginModal onHide={this.toggleModal} modalFlag={this.state.modalFlag} />
+
             </div>
         );
     }
