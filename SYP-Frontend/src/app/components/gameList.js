@@ -4,6 +4,11 @@ import Button from 'react-bootstrap/Button';
 import './components.css';
 import axios from 'axios';
 import {getUserId} from '../helpers/user';
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger'
+import Tooltip from 'react-bootstrap/Tooltip'
+
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import {faGamepad, faHeart, faPlus} from '@fortawesome/free-solid-svg-icons'
 
 export default class GameList extends Component {
 
@@ -13,10 +18,12 @@ export default class GameList extends Component {
         this.addToOwned = this
             .addToOwned
             .bind(this);
+        this.addToWishlist = this
+            .addToWishlist
+            .bind(this);
 
         this.state = {
-            games: [],
-            gameAdded: false
+            games: []
         };
     }
 
@@ -31,15 +38,12 @@ export default class GameList extends Component {
             })
     }
 
-    addToOwned = (e) => {
-        console.log()
+    addToOwned = (gameId) => {
         const userId = getUserId();
-
         const data = {
             userId,
-            gameId: e.target.value
+            gameId
         }
-
         axios
             .post('http://localhost:4000/games/addToOwned', data)
             .then(res => {
@@ -52,7 +56,49 @@ export default class GameList extends Component {
             })
     }
 
+    addToWishlist = (gameId) => {
+        const userId = getUserId();
+        const data = {
+            userId,
+            gameId
+        }
+
+        axios
+            .post('http://localhost:4000/games/addToWishlist', data)
+            .then(res => {
+                if (res.status === 200) {
+                    this.setState({gameAdded: true})
+                }
+            })
+            .catch(err => {
+                console.log(err)
+            })
+    }
+
     renderGamesList = (game, index) => {
+
+        function renderOwnedGameTooltip(props) {
+            return (
+                <Tooltip id="button-tooltip" {...props}>
+                    Add to Owned Games
+                </Tooltip>
+            );
+        }
+        function renderWishlistTooltip(props) {
+            return (
+                <Tooltip id="button-tooltip" {...props}>
+                    Add to Wishlist
+                </Tooltip>
+            );
+        }
+        function renderGamePageTooltip(props) {
+            return (
+                <Tooltip id="button-tooltip" {...props}>
+                    Go to Game Page
+                </Tooltip>
+            );
+        }
+
         return (
             <tr key={index}>
                 <td>{game.title}</td>
@@ -62,22 +108,25 @@ export default class GameList extends Component {
                 <td>{game.release}</td>
                 <td>{game.director}</td>
                 <td>
-                    {this.state.gameAdded
-                        ? <Button
-                                variant="outline-danger"
-                                size="sm"
-                                value={game._id}
-                                onClick={this.addToOwned}>Remove Game</Button>
-                        : <Button
-                            variant="outline-dark"
-                            size="sm"
-                            value={game._id}
-                            onClick={this.addToOwned}>Add Game</Button>}
+                    <OverlayTrigger placement="top" delay={{ show: 150, hide: 175 }} overlay={renderOwnedGameTooltip}> 
+                        <Button variant="transparent" onClick={() => this.addToOwned(game._id)}>
+                            <FontAwesomeIcon size='lg' color="black" icon={faPlus}/>
+                        </Button>
+                    </OverlayTrigger>
+                    <OverlayTrigger placement="top" delay={{ show: 150, hide: 175 }} overlay={renderWishlistTooltip}>
+                        <Button variant="transparent" onClick={() => this.addToWishlist(game._id)}>
+                            <FontAwesomeIcon size='lg' color="black" icon={faHeart}/>
+                        </Button>
+                    </OverlayTrigger>
+                    <OverlayTrigger placement="top" delay={{ show: 150, hide: 175 }} overlay={renderGamePageTooltip}>
+                        <Button variant="transparent" href={`/games/${game._id}`}>
+                            <FontAwesomeIcon size='lg' color="black" icon={faGamepad}/>
+                        </Button>
+                    </OverlayTrigger>
                 </td>
             </tr>
         )
     }
-
     render() {
         return <div
             style={{

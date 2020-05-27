@@ -38,7 +38,7 @@ export default class HomepageUser extends Component {
             paddingLeft: 100,
             paddingRight: 100
         }}>
-            <h1>I WISH I HAD ONE MORE NIGHT TO LIVE</h1>
+            <h1>USER HOMEPAGE</h1>
             <h3>Welcome back <span style={{color:"red"}}>{this.state.user.username}</span></h3>
         </div>
     }

@@ -120,10 +120,20 @@
     text-align: right;
     text-shadow: 1px 1px black;
 }
-
 .navbar-shadow {
     box-shadow: 0 5px 5px 0 rgba(0,0,0,0.5);
 }
+.cover-shadow {
+    z-index: 2;
+    /* box-sizing: border-box; */
+    border: 1px solid black;
+    height: 42vh !important;
+    transform: scale(1.1);
+    border-radius: 7px;
+    box-shadow: 0 0 25px 5px rgba(0,0,0,0.73);
+
+}
+
 /* COLOURS */
 .white {
     color: white;
@@ -237,4 +247,18 @@ h4 {
     border: 1px solid #333;
     float: left;
     margin-right: 10px;
+}
+.btn-group {
+    display: block;
+    /* Make the buttons appear below each other */
+}
+
+.log-btn {
+    padding: 10px 24px;
+    /* Some padding */
+    width: 15vh;
+    /* Set a width if needed */
+    height: 10vh;
+    display: block;
+
 }

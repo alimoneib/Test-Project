@@ -6,6 +6,7 @@ import GameList from './components/gameList.js';
 import User from './components/user.js';
 import HomepageUser from './components/homepageUser.js';
 import HomepageGuest from './components/homepageGuest.js';
+import Game from './components/gamePage.js';
 
 import {getJwt} from './helpers/jwt';
 import {getUserId} from './helpers/user';
@@ -39,6 +40,7 @@ export default class App extends Component {
                         : <Route path="/" exact component={HomepageGuest}/>}
                     <Route path="/games/allGames" exact component={GameList}/>
                     <Route path="/users/:id" exact component={User}/>
+                    <Route path="/games/:id" exact component={Game}/>
                 </Switch>
             </Router>
         );

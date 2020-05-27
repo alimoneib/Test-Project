@@ -7,7 +7,7 @@ export default class HomepageGuest extends Component {
             paddingLeft: 100,
             paddingRight: 100
         }}>
-            <h1>THIS IS THE LAND OF CONFUSION</h1>
+            <h1>GUEST HOMEPAGE</h1>
         </div>
     }
 }
