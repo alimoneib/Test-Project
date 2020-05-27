@@ -1,344 +1,240 @@
 .text-center {
     text-align: center;
-  }
-.button-center {
-  display: block; 
-  margin: 0 auto;}
+}
 
-   /* FONT FACES */
- @font-face {
-  font-family: title;
-  src: url(../fonts/04B_30__.TTF);
-  font-style: normal;
-  font-weight: 100;
-  font-size: xx-large;
+/* FONT FACES */
+@font-face {
+    font-family: title;
+    src: url("../fonts/04B_30__.TTF");
+    font-style: normal;
+    font-weight: 100;
+    font-size: xx-large;
 }
 @font-face {
-  font-family: paragragh;
-  src: url(../fonts/Diner.otf);
-  font-style: normal;
-  font-weight: 100;
-  font-size: larger;
+    font-family: paragragh;
+    src: url("../fonts/Diner.otf");
+    font-style: normal;
+    font-weight: 100;
+    font-size: larger;
 }
 @font-face {
-  font-family: paragragh-bold;
-  src: url(../fonts/Diner\ Bold.otf);
-  font-style: normal;
-  font-weight: 100;
-  font-size: x-large;
+    font-family: paragragh-bold;
+    src: url("../fonts/Diner\ Bold.otf");
+    font-style: normal;
+    font-weight: 100;
+    font-size: x-large;
 }
 @font-face {
-  font-family: logo;
-  src: url(../fonts/Adventure.ttf);
-  font-style: normal;
-  font-weight: 100;
-  font-size: xx-large;
+    font-family: logo;
+    src: url("../fonts/Adventure.ttf");
+    font-style: normal;
+    font-weight: 100;
+    font-size: xx-large;
 }
 
 /* FONT CLASSES */
 .font-title {
-  font-family: title;
-  font-size: xx-large;
-  -webkit-text-stroke: 1px black;
-  font-weight: 100;
-  color: #4F5D73;
-  text-shadow: 4px 4px #6BB09F;
+    font-family: title;
+    font-size: xx-large;
+    -webkit-text-stroke: 1px black;
+    font-weight: 100;
+    color: #4F5D73;
+    text-shadow: 4px 4px #6BB09F;
 }
 .font-title-white-stroke {
-  font-family: title;
-  font-size: xx-large;
-  -webkit-text-stroke: 1px black;
-  font-weight: 100;
-  color: white;
-  text-shadow: 4px 4px #6BB09F;
+    font-family: title;
+    font-size: xx-large;
+    -webkit-text-stroke: 1px black;
+    font-weight: 100;
+    color: white;
+    text-shadow: 4px 4px #6BB09F;
 }
 .font-title-white {
-  font-family: title;
-  font-size: xx-large;
-  font-weight: 100;
-  color: white;
-  text-shadow: 2px 2px #6BB09F;
+    font-family: title;
+    font-size: xx-large;
+    font-weight: 100;
+    color: white;
+    text-shadow: 2px 2px #6BB09F;
 }
 .font-subtitle {
-  font-family: title;
-  font-size: x-large;
-  font-weight: 100;
-  -webkit-text-stroke: 1px black;
-  color: #4F5D73;
-  text-shadow: 4px 4px #6BB09F;
+    font-family: title;
+    font-size: x-large;
+    font-weight: 100;
+    -webkit-text-stroke: 1px black;
+    color: #4F5D73;
+    text-shadow: 4px 4px #6BB09F;
 }
 .font-subtitle-grey {
-  font-family: title;
-  -webkit-text-stroke: 1px black;
-  font-size: x-large;
-  font-weight: 100;
-  color: white;
-  text-shadow: 1px 1px #6BB09F;
+    font-family: title;
+    -webkit-text-stroke: 1px black;
+    font-size: x-large;
+    font-weight: 100;
+    color: white;
+    text-shadow: 1px 1px #6BB09F;
 }
 .font-paragragh {
-  font-weight: 100 ;
-  font-family: paragragh;
+    font-weight: 100;
+    font-family: paragragh;
 }
 .font-paragragh-grey {
-  -webkit-text-stroke: 1px black;
-  font-weight: 100 ;
-  font-family: paragragh;
-  color: white;
+    -webkit-text-stroke: 1px black;
+    font-weight: 100;
+    font-family: paragragh;
+    color: white;
 }
 .font-paragragh-small {
-  font-weight: 10 ;
-  font-family: paragragh;
-  font-size: smaller;
+    font-weight: 10;
+    font-family: paragragh;
+    font-size: smaller;
 }
 .font-paragragh-bold {
-  font-family: paragragh-bold;
-  font-size: large;
+    font-family: paragragh-bold;
+    font-size: large;
 }
 .font-logo {
-  font-family: logo;
-  font-size: xx-large;
-  font-weight: 100;
-  color: #76C2AF;
-  text-shadow: 2px 2px black;
+    font-family: logo;
+    font-size: xx-large;
+    font-weight: 100;
+    color: #76C2AF;
+    text-shadow: 2px 2px black;
 }
 .font-logo-large {
-  font-family: logo;
-  font-size: 43px;
-  font-weight: 100;
-  color: #76C2AF;
-  text-shadow: 2px 2px black;
+    font-family: logo;
+    font-size: 43px;
+    font-weight: 100;
+    color: #76C2AF;
+    text-shadow: 2px 2px black;
 }
 .font-logo-large-dark {
-  font-family: logo;
-  font-size: 43px;
-  font-weight: 100;
-  color: #4F5D73;
-  text-shadow: 2px 2px black;
+    font-family: logo;
+    font-size: 43px;
+    font-weight: 100;
+    color: #4F5D73;
+    text-shadow: 2px 2px black;
 }
 .font-navbar-white {
-  font-family: paragragh !important;  
-  font-size: larger;
-  font-weight: 100;
-  color: white;
-  text-align: right;
-  text-shadow: 1px 1px black;
+    font-family: paragragh !important;
+    font-size: larger;
+    font-weight: 100;
+    color: white;
+    text-align: right;
+    text-shadow: 1px 1px black;
 }
 
 .navbar-shadow {
-  box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.5);
+    box-shadow: 0 5px 5px 0 rgba(0,0,0,0.5);
 }
 /* COLOURS */
 .white {
-  color: white;
+    color: white;
 }
 .yellow {
-  color: yellow !important;
+    color: yellow !important;
 }
 
 /* BACKGROUND COLOURS */
 .bg-light {
-  background-color: #76C2AF !important;
+    background-color: #76C2AF !important;
 }
 .bg-dark {
-  background-color: #4F5D73 !important;
+    background-color: #4F5D73 !important;
 }
 .bg-form {
-  background-color: #6BB09F !important;
+    background-color: #6BB09F !important;
 }
 
 /* BORDERS */
 .border-rounded {
-  border-radius: 5px;
+    border-radius: 5px;
 }
 .border-rounded-top {
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
 }
 .border-rounded-bottom {
-  border-bottom-left-radius: 20px;
-  border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
 }
 
 /* STYLING */
 .inline {
-  display:inline;
+    display: inline;
 }
 .padding-sides {
-  padding-left: 15px;
-  padding-right: 15px;
-}
-.padding-top {
-  padding-top: 85px;
-}
-
-
-
-
-/* Container holding the image and the text */
-.container {
-    position: relative;
-  }
-  .img:hover {
-    opacity: 0.5;
-  }
-  .border-fade {
-    display: inline-block;
-    box-shadow: 0 30px 40px rgba(0,0,0,.1);
-  }
-
-  .padding-left {
     padding-left: 15px;
-  }
-  .padding-top {
-    padding-top: 25px;
-  }
-  .padding-bottom {
-    padding-bottom: 25px;
-  }
-  .padding-vertical {
+    padding-right: 15px;
+}
+.padding-vertical {
     padding-bottom: 25px;
     padding-top: 25px;
-  }
-  /* Bottom right text */
-  .text-block {
-    position: absolute;
-    bottom: 20px;
-    right: 20px;
-    color: white;
-    padding-left: 20px;
-    padding-right: 20px;
-  }
-  
-  .text-bg-lightgrey {
-    background-color: lightgrey;
-    opacity: 0.5;
-  }
-  .h1 {
+}
+.h1 {
     font-family: 'Harabara Bold', Arial, sans-serif;
     -webkit-text-stroke: 1px black;
     color: white;
     display: flex;
-    text-shadow:
-        3px 3px 0 #000,
-      -1px -1px 0 #000,  
-       1px -1px 0 #000,
-       -1px 1px 0 #000,
-        1px 1px 0 #000;
- }
+    text-shadow: 3px 3px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+}
 .h2 {
-  color: white;
+    color: white;
 }
 .h3 {
-  color: white;
-  font-family: title;
-  font-weight: 100;
+    color: white;
+    font-family: title;
+    font-weight: 100;
 }
 h4 {
-  color: white;
+    color: white;
 }
 .h6 {
-  color: white;
+    color: white;
 }
- .h5 {
-  -webkit-text-stroke: 1px black;
-  color: white;
-  text-shadow:
-      3px 3px 0 #000,
-    -1px -1px 0 #000,  
-     1px -1px 0 #000,
-     -1px 1px 0 #000,
-      1px 1px 0 #000;
-}
-.button1 {font-size: 10px;}
-.button2 {font-size: 12px;}
-.button3 {font-size: 16px;}
-.button4 {font-size: 20px;}
-.button-big {font-size: 34px;
-  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
-  margin: auto;
-  width: 40%;
-  margin-left: 30%;
-  margin-right: 30%;
-      padding: 10px;
-    
-    text-align:center;
-
+.h5 {
+    -webkit-text-stroke: 1px black;
+    color: white;
+    text-shadow: 3px 3px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
 }
 .right {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
 }
 .vertical-line {
-  border-left: 2px solid white;
-  height: 4vh;
-  border-radius: 25px;
+    border-left: 2px solid white;
+    height: 4vh;
+    border-radius: 25px;
 }
 .login-modal {
-  display: flex;
-  flex: 2;
-  flex-direction: column;
-  justify-content: center;
-  height: 750px;
-  width: 100%;
-  text-align: center;
-  background-color: #E0E0D1 ;
-  border-radius: 5px;
-  background: #E0E0D1;
-  box-shadow: 0 0 15px 5px #202020;
+    display: flex;
+    flex: 2;
+    flex-direction: column;
+    justify-content: center;
+    height: 750px;
+    width: 100%;
+    text-align: center;
+    background-color: #E0E0D1;
+    border-radius: 5px;
+    background: #E0E0D1;
+    box-shadow: 0 0 15px 5px #202020;
 }
 
 .login-modal-child {
-  width: 100%;
-  margin: 0 auto;
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  justify-content: center;
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: center;
 
-}
-.login-modal-child-logo {
-  padding-bottom: 20px;
 }
 .login-modal-child-form {
-  padding-top: 70px;
-  padding-bottom: 70px;
-  padding-left: 15px;
-  padding-right: 15px;
+    padding: 70px 15px;
 }
 .box {
-  width: 200px;
-  height: 200px;
-  background: #eee;
-  border: 1px solid #333;
-  float: left;
-  margin-right: 10px;
-}
-.stripe {
-  width: 200px;
-  height: 10px;
-  background: blue;
-  position: absolute;
-  bottom: 0;
-  transition: left 0.3s;
-}
-.bg-table-fp {
-  margin: 25px 10px;
-  border-radius: 5px;
-  background: #4F5D73;
-  box-shadow: 0 0 15px 10px black;
-}
-.bg-table-fp-light {
-  margin: 25px 10px;
-  background: #76C2AF;
-  border-radius: 5px;
-  box-shadow: 0 0 25px 10px black;
-}
-.fp-div {
-  margin: 2%;
-
-}
-.col-div {
-  margin: 6%;
-
+    width: 200px;
+    height: 200px;
+    background: #eee;
+    border: 1px solid #333;
+    float: left;
+    margin-right: 10px;
 }

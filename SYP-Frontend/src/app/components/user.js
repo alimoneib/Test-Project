@@ -1,56 +1,87 @@
 import React, {Component} from 'react';
 import axios from 'axios';
-import { getJwt } from '../helpers/jwt';
+import {getJwt} from '../helpers/jwt';
+import Login from './login';
+import Register from './register';
 
-export default class NewUser extends Component {
+export default class User extends Component {
 
-    constructor(props){
+    constructor(props) {
         super(props);
+
+        this.onLogout = this
+            .onLogout
+            .bind(this);
 
         this.state = {
             id: props.match.params.id,
-            username:'',
-            listOfGames: '',
-            role: '',
-            email: '',
-            userFlag: false
+            user: {},
+            gamesOwned: [],
+            isLoggedIn: false
         }
     }
 
-    async componentDidMount(){
+    async onLogout() {
+        localStorage.removeItem('jwt');
+        localStorage.removeItem('userId');
+        window.location.href = '/';
+    }
+
+    async componentDidMount() {
         const userId = this.state.id;
         const jwt = getJwt();
 
-        if(!jwt){
-            window.location.href = '/';
+        if (!jwt) {
+            this.setState({isLoggedIn: false})
         }
 
-        await axios.get(`http://localhost:4000/users/${userId}`, { headers: { Authorization: `Bearer ${jwt}`}}).then(res => {
-            this.setState({
-                username: res.data.username,
-                role: res.data.role,
-                email: res.data.email,
-                userFlag: true
+        await axios
+            .get(`http://localhost:4000/users/${userId}`, {
+            headers: {
+                Authorization: `Bearer ${jwt}`
+            }
+        })
+            .then(res => {
+                this.setState({user: res.data, gamesOwned: res.data.gamesOwned, isLoggedIn: true})
             })
-        }).catch(err => {
-            console.log(err);
-            localStorage.removeItem('jwt');
-            window.location.href = '/';
-        })    
+            .catch(err => {
+                localStorage.removeItem('jwt');
+                localStorage.removeItem('userId');
+            })
     }
-    
 
-    render(){
-        if(this.state.userFlag === false){
+    renderGamesOwned(game, index) {
+        return <h6 key={index} className="font-paragragh-small">{game.title}</h6>
+    }
+
+    render() {
+        if (this.state.isLoggedIn === false) {
             return <div>
-                <h1>BULLSHIT</h1>
+                <Login/>
+                <Register/>
             </div>
 
-        }else{
-            return <div>
-                <h1>HI THERE {this.state.username}</h1>
-                <h5>E-Mail: {this.state.email}</h5>
-                <h5>Role: {this.state.role}</h5>            
+        } else {
+            return <div
+                style={{
+                paddingLeft: 100,
+                paddingRight: 100
+            }}>
+                <h1>HI THERE {this.state.user.username}</h1>
+                <h5>E-Mail: {this.state.user.email}</h5>
+                <h5>Role: {this.state.user.role}</h5>
+                <br></br>
+                <h5>Owned Games:</h5>
+                {this
+                    .state
+                    .gamesOwned
+                    .map(this.renderGamesOwned)}
+                <br></br>
+                <input
+                    type="button"
+                    value="Log Out"
+                    className="btn bg-light font-title white"
+                    onClick={this.onLogout}/>
             </div>
         }
     }
