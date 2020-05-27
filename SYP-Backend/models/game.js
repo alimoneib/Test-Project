@@ -8,6 +8,12 @@ let Game = new Schema({
     alternativeTitles: [{
         type: String
     }],
+    coverArt: {
+        type: String
+    },
+    screenshots: [{
+        type: String
+    }],
     description: {
         type: String
     },
@@ -59,8 +65,7 @@ let Game = new Schema({
         ref: 'Game'
     }],
     ageRatings: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Rating'
+        type: String
     }],
     listEntries: [{
         type: mongoose.Schema.Types.ObjectId,

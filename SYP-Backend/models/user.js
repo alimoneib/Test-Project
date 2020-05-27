@@ -83,10 +83,17 @@ let userSchema = new Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'List'
     }],
+    clonedLists: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'List'
+    }],
     favouriteGames: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Game'
-    }]
+    }],
+    avatar: {
+        type: String
+    }
 });
 
 module.exports = mongoose.model('User', userSchema);

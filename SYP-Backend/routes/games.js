@@ -20,6 +20,7 @@ gamesRouter.get('/:id', (req, res) => {
         if (err) {
             console.log(err);
         } else {
+            console.log("game", game)
             res.json(game);
         }
     });
@@ -48,7 +49,6 @@ gamesRouter.post('/addToOwned', async(req, res) => {
 
     const ownedGame = await Game.findOne({_id: gameId});
     const user = await User.findOne({_id: userId});
-
     await user
         .gamesOwned
         .push(ownedGame);
@@ -64,7 +64,26 @@ gamesRouter.post('/addToOwned', async(req, res) => {
                 .status(400)
                 .send(err);
         })
+})
 
+gamesRouter.post('/addToWishlist', async(req, res) => {
+    const gameId = req.body.gameId;
+    const userId = req.body.userId;
+
+    const gameToAdd = await Game.findOne({_id: gameId});
+    const user = await User.findOne({_id: userId});
+
+    await user.gamesWishlist.push(gameToAdd);
+    user.save().then((user) => {
+            res
+                .status(200)
+                .json({user, message: `${gameToAdd.title} has been successfully added to user: ${user._id}`})
+        })
+        .catch((err) => {
+            res
+                .status(400)
+                .send(err);
+        })
 })
 
 module.exports = gamesRouter;
