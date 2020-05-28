@@ -8,6 +8,8 @@ const {registerValidation, loginValidation} = require('../validation');
 const auth = require('../middleware/auth');
 
 const User = require('../models/user');
+const Review = require('../models/review');
+const Game = require('../models/game');
 
 usersRouter.post('/register', async(req, res) => {
     const validationResult = registerValidation(req.body);
@@ -100,6 +102,100 @@ usersRouter.get('/:id', auth, async(req, res) => {
         .populate('gamesOwned');
 
     res.json(user);
+
+});
+
+usersRouter.get('/reviews/get', async(req, res) => {
+    const {userId, gameId} = req.query;
+
+    const user = await User
+        .findById({_id: userId})
+        .populate('gameReviews');
+    const game = await Game.findById({_id: gameId});
+
+    const filterCondition = (review) => {
+        if (review.game.toString() === gameId.toString()) {
+            return review;
+        }
+    }
+    // Check if review already exists for game by user
+    const existingReview = user
+        .gameReviews
+        .filter(filterCondition);
+
+    if (Array.isArray(existingReview) && existingReview.length !== 0) {
+       res.json(existingReview[0]);
+    } else {
+       res.send("No review found");
+    }
+});
+
+usersRouter.post('/reviews/add', auth, async(req, res) => {
+    const {userId, gameId, submittedReview} = req.body;
+    const user = await User.findById({_id: userId});
+    const game = await Game.findById({_id: gameId});
+
+    try {
+        const newReview = new Review({user, game, reviewText: submittedReview, rating: null});
+        await newReview.save();
+
+        await game
+            .reviews
+            .push(newReview);
+        await game.save();
+
+        await user
+            .gameReviews
+            .push(newReview);
+        await user.save();
+
+        res
+            .status(200)
+            .json(newReview);
+
+    } catch (error) {
+        res
+            .status(400)
+            .json({message: error})
+    }
+
+});
+
+usersRouter.post('/ratings/add', auth, async(req, res) => {
+    const {rating, gameId, userId} = req.body;
+    const user = await User
+        .findById({_id: userId})
+        .populate('gameReviews');
+    const game = await Game.findById({_id: gameId});
+
+    const doesExist = (review) => {
+        if (review.game.toString() === gameId.toString()) {
+            return review;
+        }
+    }
+    // Check if review already exists for game by user
+    const existingReview = user
+        .gameReviews
+        .filter(doesExist);
+
+    if (Array.isArray(existingReview) && existingReview.length !== 0) {
+        const updatedReview = await Review.findById({_id: existingReview[0]._id});
+        updatedReview.rating = rating;
+        await updatedReview.save();
+    } else {
+        const newReview = new Review({user, game, reviewText: null, rating});
+        await newReview.save();
+
+        await game
+            .reviews
+            .push(newReview);
+        await game.save();
+
+        await user
+            .gameReviews
+            .push(newReview);
+        await user.save();
+    }
 
 });
 

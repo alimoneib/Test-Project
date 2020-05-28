@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-let Game = new Schema({
+let GameSchema = new Schema({
     title: {
         type: String
     },
@@ -74,4 +74,4 @@ let Game = new Schema({
 
 });
 
-module.exports = mongoose.model('Game', Game);
+module.exports = mongoose.model('Game', GameSchema);

@@ -20,7 +20,6 @@ gamesRouter.get('/:id', (req, res) => {
         if (err) {
             console.log(err);
         } else {
-            console.log("game", game)
             res.json(game);
         }
     });
@@ -66,24 +65,42 @@ gamesRouter.post('/addToOwned', async(req, res) => {
         })
 })
 
-gamesRouter.post('/addToWishlist', async(req, res) => {
+gamesRouter.post('/addRemoveWishlist', async(req, res) => {
     const gameId = req.body.gameId;
     const userId = req.body.userId;
 
-    const gameToAdd = await Game.findOne({_id: gameId});
+    const game = await Game.findOne({_id: gameId});
     const user = await User.findOne({_id: userId});
 
-    await user.gamesWishlist.push(gameToAdd);
-    user.save().then((user) => {
-            res
-                .status(200)
-                .json({user, message: `${gameToAdd.title} has been successfully added to user: ${user._id}`})
-        })
-        .catch((err) => {
-            res
-                .status(400)
-                .send(err);
-        })
+    const isAdded = user
+        .gamesWishlist
+        .includes(gameId);
+
+    if (isAdded) {
+        user.gamesWishlist = await user
+            .gamesWishlist
+            .filter(gameEntry => {
+                return gameEntry.toString() !== gameId.toString()
+            })
+        await user.save();
+        res.status(200).json({user});
+    } else {
+        await user
+            .gamesWishlist
+            .push(game);
+        user
+            .save()
+            .then((user) => {
+                res
+                    .status(200)
+                    .json({user, message: `${game.title} has been successfully added to user: ${user._id}`})
+            })
+            .catch((err) => {
+                res
+                    .status(400)
+                    .send(err);
+            })
+    }
 })
 
 module.exports = gamesRouter;

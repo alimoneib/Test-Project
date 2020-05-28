@@ -11,8 +11,7 @@ let ReviewSchema = new Schema({
         ref: 'Game'
     },
     rating: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Rating'
+        type: Number
     },
     reviewText: {
         type: String
