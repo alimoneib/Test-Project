@@ -4,7 +4,7 @@ import axios from 'axios';
 import Form from 'react-bootstrap/Form'
 
 import "bootstrap/dist/css/bootstrap.min.css";
-import './components.css';
+import '../styles/components.css';
 
 export default class Login extends Component {
     constructor(props) {
@@ -41,7 +41,6 @@ export default class Login extends Component {
             .post('http://localhost:4000/users/login', loginCredentials)
             .then(res => {
                 if (res.status === 200) {
-                    console.log(res.data)
                     localStorage.setItem('jwt', res.data.token);
                     localStorage.setItem('userId', res.data.user);
                     this.setState({isLoggedIn: true})

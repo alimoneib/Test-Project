@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
-import './components.css';
+import '../styles/components.css';
 import axios from 'axios';
 import {getUserId} from '../helpers/user';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger'
@@ -18,8 +18,8 @@ export default class GameList extends Component {
         this.addToOwned = this
             .addToOwned
             .bind(this);
-        this.addToWishlist = this
-            .addToWishlist
+        this.addRemoveWishlist = this
+            .addRemoveWishlist
             .bind(this);
 
         this.state = {
@@ -56,7 +56,7 @@ export default class GameList extends Component {
             })
     }
 
-    addToWishlist = (gameId) => {
+    addRemoveWishlist = (gameId) => {
         const userId = getUserId();
         const data = {
             userId,
@@ -64,7 +64,7 @@ export default class GameList extends Component {
         }
 
         axios
-            .post('http://localhost:4000/games/addToWishlist', data)
+            .post('http://localhost:4000/games/addRemoveWishlist', data)
             .then(res => {
                 if (res.status === 200) {
                     this.setState({gameAdded: true})
@@ -114,7 +114,7 @@ export default class GameList extends Component {
                         </Button>
                     </OverlayTrigger>
                     <OverlayTrigger placement="top" delay={{ show: 150, hide: 175 }} overlay={renderWishlistTooltip}>
-                        <Button variant="transparent" onClick={() => this.addToWishlist(game._id)}>
+                        <Button variant="transparent" onClick={() => this.addRemoveWishlist(game._id)}>
                             <FontAwesomeIcon size='lg' color="black" icon={faHeart}/>
                         </Button>
                     </OverlayTrigger>

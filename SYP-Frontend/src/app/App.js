@@ -2,11 +2,12 @@ import React, {Component} from 'react';
 import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
     
 import Navbar from './components/navbar.js';
-import GameList from './components/gameList.js';
-import User from './components/user.js';
-import HomepageUser from './components/homepageUser.js';
-import HomepageGuest from './components/homepageGuest.js';
-import Game from './components/gamePage.js';
+import GameList from './pages/gameListPage.js';
+import User from './pages/userPage.js';
+import HomepageUser from './pages/homepageUser.js';
+import HomepageGuest from './pages/homepageGuest.js';
+import Game from './pages/gamePage.js';
+import Review from './pages/reviewPage.js';
 
 import {getJwt} from './helpers/jwt';
 import {getUserId} from './helpers/user';
@@ -41,6 +42,7 @@ export default class App extends Component {
                     <Route path="/games/allGames" exact component={GameList}/>
                     <Route path="/users/:id" exact component={User}/>
                     <Route path="/games/:id" exact component={Game}/>
+                    <Route path="/reviews/:id" exact component={Review}/>
                 </Switch>
             </Router>
         );

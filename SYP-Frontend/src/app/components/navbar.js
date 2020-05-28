@@ -8,7 +8,7 @@ import {faUser, faGhost} from '@fortawesome/free-solid-svg-icons'
 import logo from '../../logo512.png'
 
 import "bootstrap/dist/css/bootstrap.min.css";
-import './components.css';
+import '../styles/components.css';
 import LoginModal from './loginModal';
 import {getJwt} from '../helpers/jwt';
 import {getUserId} from '../helpers/user';

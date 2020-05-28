@@ -178,32 +178,6 @@
     padding-bottom: 25px;
     padding-top: 25px;
 }
-.h1 {
-    font-family: 'Harabara Bold', Arial, sans-serif;
-    -webkit-text-stroke: 1px black;
-    color: white;
-    display: flex;
-    text-shadow: 3px 3px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
-}
-.h2 {
-    color: white;
-}
-.h3 {
-    color: white;
-    font-family: title;
-    font-weight: 100;
-}
-h4 {
-    color: white;
-}
-.h6 {
-    color: white;
-}
-.h5 {
-    -webkit-text-stroke: 1px black;
-    color: white;
-    text-shadow: 3px 3px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
-}
 .right {
     display: flex;
     flex-direction: column;
@@ -261,4 +235,27 @@ h4 {
     height: 10vh;
     display: block;
 
+}
+
+.review-modal {
+    background-image: radial-gradient(circle, #5f8d8c, #548189, #4e7585, #4c697e, #4c5c74);
+        padding: 50px;
+    border-radius: 7px;
+    box-shadow: 0 0 15px 5px #202020;
+    text-align: center;
+}
+.flex-row {
+    display: flex;
+    flex-direction: row;
+    padding: 30px;
+}
+.review-modal-cover {
+    /* box-sizing: border-box; */
+    border: 1px solid black;
+    height: 35vh !important;
+    /* border-radius: 7px; */
+    box-shadow: 0 0 25px 5px rgba(0,0,0,0.73);
+}
+.review-modal-info {
+    padding-right: 30px;
 }

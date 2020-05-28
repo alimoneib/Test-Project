@@ -4,7 +4,7 @@ import axios from 'axios';
 import Form from 'react-bootstrap/Form'
 
 import "bootstrap/dist/css/bootstrap.min.css";
-import './components.css';
+import '../styles/components.css';
 
 export default class Register extends Component {
     constructor(props) {

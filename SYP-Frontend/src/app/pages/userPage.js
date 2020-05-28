@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 import {getJwt} from '../helpers/jwt';
-import Login from './login';
-import Register from './register';
+import Login from '../components/login';
+import Register from '../components/register';
 
 export default class User extends Component {
 
