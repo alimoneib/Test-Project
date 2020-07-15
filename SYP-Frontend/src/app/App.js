@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
     
 import Navbar from './components/navbar.js';
+import Footer from './components/footer.js';
 import GameList from './pages/gameListPage.js';
 import User from './pages/userPage.js';
 import HomepageUser from './pages/homepageUser.js';
@@ -44,6 +45,7 @@ export default class App extends Component {
                     <Route path="/games/:id" exact component={Game}/>
                     <Route path="/reviews/:id" exact component={Review}/>
                 </Switch>
+                <Footer/>
             </Router>
         );
     }

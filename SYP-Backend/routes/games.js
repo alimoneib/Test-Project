@@ -25,6 +25,20 @@ gamesRouter.get('/:id', (req, res) => {
     });
 });
 
+gamesRouter.get('/:id/reviews', async(req, res) => {
+    const {id} = req.params;
+    const game = await Game
+        .findById(id)
+        .populate({
+            path: 'reviews',
+            populate: {
+                path: 'user'
+            }
+        });
+    const reviews = game.reviews;
+    res.json({reviews});
+});
+
 gamesRouter.post('/add', (req, res) => {
     const addedGame = new Game(req.body);
     addedGame
@@ -83,7 +97,9 @@ gamesRouter.post('/addRemoveWishlist', async(req, res) => {
                 return gameEntry.toString() !== gameId.toString()
             })
         await user.save();
-        res.status(200).json({user});
+        res
+            .status(200)
+            .json({user});
     } else {
         await user
             .gamesWishlist
