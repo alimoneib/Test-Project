@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
-    
+import '../index.css';
+
 import Navbar from './components/navbar.js';
 import Footer from './components/footer.js';
 import GameList from './pages/gameListPage.js';
@@ -35,17 +36,19 @@ export default class App extends Component {
     render() {
         return (
             <Router>
-                <Navbar/>
-                <Switch>
-                    {this.state.isLoggedIn
-                        ? <Route path="/" exact component={HomepageUser}/>
-                        : <Route path="/" exact component={HomepageGuest}/>}
-                    <Route path="/games/allGames" exact component={GameList}/>
-                    <Route path="/users/:id" exact component={User}/>
-                    <Route path="/games/:id" exact component={Game}/>
-                    <Route path="/reviews/:id" exact component={Review}/>
-                </Switch>
-                <Footer/>
+                <div className="App">
+                    <Navbar/>
+                        <Switch>
+                            {this.state.isLoggedIn
+                                ? <Route path="/" exact component={HomepageUser}/>
+                                : <Route path="/" exact component={HomepageGuest}/>}
+                            <Route path="/games/allGames" exact component={GameList}/>
+                            <Route path="/users/:id" exact component={User}/>
+                            <Route path="/games/:id" exact component={Game}/>
+                            <Route path="/reviews/:id" exact component={Review}/>
+                        </Switch>
+                    <Footer/>    
+                </div>
             </Router>
         );
     }

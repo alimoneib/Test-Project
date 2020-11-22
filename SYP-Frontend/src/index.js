@@ -6,12 +6,10 @@ import * as serviceWorker from './serviceWorker';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 ReactDOM.render(
-    <div style={{
-    height: '100vh'
-}}>
-    <div className="bg-color"><App/>
-    </div>
-</div>, document.getElementById('root'));
+    <div className="bg-color">
+        <App/>
+    </div>,
+     document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls. Learn

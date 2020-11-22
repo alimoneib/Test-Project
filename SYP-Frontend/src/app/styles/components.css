@@ -1,6 +1,9 @@
 .text-center {
     text-align: center;
 }
+.text-right {
+    text-align: right;
+}
 
 /* FONT FACES */
 @font-face {
@@ -168,19 +171,18 @@
     box-shadow: 0 0 25px 5px rgba(0,0,0,0.73);
 }
 .avg-rating {
-  transform: translate(-100%, -40%);
+  transform: translate(-10%, -30%);
   z-index: 2;
 }
 .avg-rating-header {
     /* transform: scale(1.1); */
     box-shadow: 0 5px 5px 0 rgba(0,0,0,0.5);
     border: 2px solid yellow;
-    padding: 40%;
-    width: fit-content;
-    height: fit-content;
+    width: 100px;
+    height: 100px;
     text-align: center;
-    vertical-align: middle;
-    border-radius: 100%;
+    vertical-align: middle !important;
+    border-radius: 50%;
 }
 .game-page-border {
   box-shadow: 0 5px 5px 0 rgba(0,0,0,0.5);
@@ -189,7 +191,7 @@
 
 /* COLOURS */
 .white {
-    color: white;
+    color: white !important;
 }
 .yellow {
     color: yellow !important;
@@ -329,12 +331,12 @@
 .card-body {
     box-shadow: 0 0 9px 2px rgba(0,0,0,0.85);
 }
-
 .site-footer {
     padding: 45px 0 20px;
     font-size: 15px;
     line-height: 24px;
     color: white;
+    position: absolute; bottom: 0; width: 100%;
 }
 .site-footer hr {
     border-top-color: #bbb;
@@ -468,4 +470,10 @@
         margin-right: 0;
         font-weight: 600;
     }
+}
+
+.img-center {
+    display: block;
+  margin-left: auto;
+  margin-right: auto;
 }

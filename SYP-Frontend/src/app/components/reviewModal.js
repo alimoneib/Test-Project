@@ -54,6 +54,7 @@ export default class ReviewModal extends Component {
             }
         })
             .then(res => {
+                console.log("review", res.data);
                 window.location.href = `/reviews/${res.data._id}`;
             })
             .catch(err => {

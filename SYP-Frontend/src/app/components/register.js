@@ -33,6 +33,8 @@ export default class Register extends Component {
     async onSubmitRegister(e) {
         e.preventDefault();
 
+        console.log("Helom", this.state)
+
         if (this.state.register_confirmPassword !== this.state.register_password) {
             alert('Passwords Do Not Match');
             throw new Error("Passwords Do Not Match");

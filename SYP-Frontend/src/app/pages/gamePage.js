@@ -6,6 +6,8 @@ import ButtonGroup from "react-bootstrap/ButtonGroup";
 import Image from "react-bootstrap/Image";
 import Carousel from "react-bootstrap/Carousel";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Moment from 'react-moment';
+
 import {
   faPencilAlt,
   faHeart,
@@ -47,7 +49,7 @@ export default class GamePage extends Component {
     const userId = getUserId();
 
     await axios
-      .get(`http://localhost:4000/games/${gameId}`)
+      .get(`http://localhost:4000/games/:${gameId}`)
       .then((res) => {
         this.setState({ game: res.data });
       })
@@ -74,6 +76,7 @@ export default class GamePage extends Component {
         });
     }
   }
+  
   toggleLoginModal = (e) => {
     this.setState({
       loginModalFlag: !this.state.loginModalFlag,
@@ -93,6 +96,7 @@ export default class GamePage extends Component {
       this.setState({ loginModalFlag: true });
     }
   };
+
   async toggleReviewModal() {
     this.state.isLoggedIn
       ? await this.setState({
@@ -129,10 +133,11 @@ export default class GamePage extends Component {
   render() {
     return (
       <div>
+        {/* Game Info Jumbotron */}
         <div
           style={{
-            paddingLeft: 100,
-            paddingRight: 100,
+            paddingLeft: 300,
+            paddingRight: 300,
             display: "flex",
             position: "relative",
             flexDirection: "row",
@@ -153,14 +158,17 @@ export default class GamePage extends Component {
           >
             <div>
               <h1 className="font-title">{this.state.game.title}</h1>
-              <h6 className="font-zorque">
+              <h6 className="font-paragragh-bold">
                 Also known as: {this.state.game.alternativeTitles}
               </h6>
-              <h6 className="font-zorque">
-                Released on: {this.state.game.release}
+              <h6 className="font-paragragh-bold">
+                Released on: 
+                <Moment format="D MMMM YYYY" withTitle>
+                   {this.state.game.release}
+                </Moment>
               </h6>
               <br></br>
-              <h6 className="font-paragragh">{this.state.game.description}</h6>
+              <h6 className="font-paragragh-bold">{this.state.game.description}</h6>
               <br></br>
               <div>
                 <h6
@@ -202,9 +210,9 @@ export default class GamePage extends Component {
               </div>
             </div>
             <div className="avg-rating">
-              <h1 className="avg-rating-header font-8bit bg-dark yellow">
+              <p className="avg-rating-header font-8bit bg-dark yellow">
                 {this.state.game.avgRating}
-              </h1>
+              </p>
             </div>
           </Jumbotron>
 
@@ -307,126 +315,93 @@ export default class GamePage extends Component {
             game={this.state.game}
           />
         </div>
+        
+        {/* Screenshot Carousel */}
+
         <div
           style={{
-            paddingLeft: 100,
-            paddingRight: 100,
-            position: "relative",
+            paddingLeft: 300,
+            paddingRight: 300,
             display: "flex",
-            flexPosition: "row",
+            position: "relative",
+            flexDirection: "row",
           }}
         >
-          <Carousel
-            claassName="carousel"
-            style={{
-              width: "1024px",
-              backgroundColor: "blue",
-              margin: "auto",
-            }}
-          >
-            <Carousel.Item>
-              <img
-                className="d-block carousel"
-                src="https://fmshots.com/bk/4DkXBR1.png"
-                height="465"
-                width="1024vh"
-              />
-            </Carousel.Item>
-            <Carousel.Item>
-              <img
-                className="d-block carousel"
-                src="https://i.redd.it/59b9y92ak8z01.png"
-                height="465"
-                width="1024"
-              />
-            </Carousel.Item>
-            <Carousel.Item>
-              <img
-                className="d-block carousel"
-                src="https://i.imgur.com/z6Vrk.png"
-                height="465"
-                width="1024"
-              />
-            </Carousel.Item>
-          </Carousel>
           <div
             style={{
-                backgroundColor: "#f7f7f7",
-                width: "500px",
-              marginRight: 50,
-              borderRadius: "10px",
-              padding: 40,
+              position: "relative",
+              display: "flex",
+              flexPosition: "row",
             }}
           >
-            <h2 className="font-8bit" style={{color: '#4F5D73'}}>Available On:</h2>
-            <div
+            <Carousel
+              claassName="carousel"
               style={{
-                marginTop: "10%",
-                paddingLeft: "5%",
-                paddingRight: "4%",
-                // height: "35%",
-                verticalAlign: "middle",
-                display: "flex",
-                position: "relative",
-                flexDirection: "row",
+                width: "1024px",
+                margin: "auto",
               }}
             >
-              <img
-                src="https://upload.wikimedia.org/wikipedia/commons/7/76/PlayStation_2_logo.svg"
-                style={{ width: "10vh", marginRight: "10%" }}
-              ></img>
-              <img
-                src="https://upload.wikimedia.org/wikipedia/commons/3/31/Epic_Games_logo.svg"
-                style={{ width: "10vh", marginRight: "10%" }}
-              ></img>
-              <img
-                src="https://upload.wikimedia.org/wikipedia/commons/8/83/Steam_icon_logo.svg"
-                style={{ width: "10vh" }}
-              ></img>
-            </div>
-
-            <div
-              style={{
-                  marginTop: "15%",
-                paddingLeft: "5%",
-                paddingRight: "4%",
-                // height: "35%",
-                verticalAlign: "middle",
-                display: "flex",
-                position: "relative",
-                flexDirection: "row",
-              }}
-            >
-              <img
-                src="https://upload.wikimedia.org/wikipedia/commons/0/0e/PSP_Logo.svg"
-                style={{ width: "10vh", marginRight: "10%" }}
-              ></img>
-              <img
-                src="https://upload.wikimedia.org/wikipedia/commons/a/af/Nintendo_DS_Logo.svg"
-                style={{ width: "10vh", marginRight: "10%" }}
-              ></img>
-              <img
-                src="https://upload.wikimedia.org/wikipedia/commons/4/4e/Playstation_logo_colour.svg"
-                style={{ width: "10vh" }}
-              ></img>
-            </div>
+              <Carousel.Item>
+                <img
+                  className="d-block carousel"
+                  src="https://fmshots.com/bk/4DkXBR1.png"
+                  height="465"
+                  width="1024vh"
+                  alt = ""
+                />
+              </Carousel.Item>
+              <Carousel.Item>
+                <img
+                  className="d-block carousel"
+                  src="https://i.redd.it/59b9y92ak8z01.png"
+                  height="465"
+                  width="1024"
+                  alt = ""
+                />
+              </Carousel.Item>
+              <Carousel.Item>
+                <img
+                  className="d-block carousel"
+                  src="https://i.imgur.com/z6Vrk.png"
+                  height="465"
+                  width="1024"
+                  alt = ""
+                />
+              </Carousel.Item>
+            </Carousel>
+          </div>
+                    <div style={{ width: "3%" }} />
+          <div style={{ 
+              backgroundColor: "#f7f7f7",
+              borderTopRightRadius: "10px",
+              borderBottomRightRadius: "10px",
+              borderTopLeftRadius: "10px",
+              borderBottomLeftRadius: "10px",
+              width: "130vh",
+              height: "45vh",
+              display: "flex",
+              flexDirection: "row"
+            }}>
+              <div style={{
+                marginLeft: "25px",
+                marginTop:"40px"
+              }}>
+                <h1 className="font-title">Available On:</h1>
+              </div>
           </div>
         </div>
-        <div
-          style={{
-            paddingLeft: 100,
-            paddingRight: 100,
-          }}
-        >
+
+        <div>
           <br></br>
           <hr></hr>
           <br></br>
         </div>
 
+        {/* Popular Reviews & Featured Collections */}
         <div
           style={{
-            paddingLeft: 100,
-            paddingRight: 100,
+            paddingLeft: 300,
+            paddingRight: 300,
             display: "flex",
             position: "relative",
             flexDirection: "row",
@@ -434,12 +409,15 @@ export default class GamePage extends Component {
         >
           <Collage title="Popular Reviews" gameId={this.state.id} />
           <div style={{ width: "3%" }} />
-          <Collage title="Featured Lists" />
+          <Collage title="Featured Collections" />
         </div>
+        
+        {/* Footer Padding */}
         <div
           style={{
-            paddingLeft: 100,
-            paddingRight: 100,
+            paddingLeft: 300,
+            paddingRight: 300,
+            paddingBottom: 300
           }}
         >
           <br></br>

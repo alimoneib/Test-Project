@@ -4,9 +4,8 @@ import axios from "axios";
 import TextTruncate from "react-text-truncate"; // recommend
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faStar} from '@fortawesome/free-solid-svg-icons';
-import Moment from 'react-moment';
 
-export default class Collage extends Component {
+export default class ReviewsHP extends Component {
   constructor(props) {
     super(props);
 
@@ -14,6 +13,9 @@ export default class Collage extends Component {
       gameId: this.props.gameId,
       rowOne: [],
       rowTwo: [],
+      rowThree: [],
+      rowFour: [],
+      rowFive: [],
     };
   }
 
@@ -22,9 +24,12 @@ export default class Collage extends Component {
     await axios
       .get(`http://localhost:4000/games/${this.state.gameId}/reviews`)
       .then((res) => {
-        const rowOne = res.data.reviews.slice(0, 2);
-        const rowTwo = res.data.reviews.slice(2, 4);
-        this.setState({ rowOne, rowTwo });
+        const rowOne = res.data.reviews;
+        const rowTwo = res.data.reviews;
+        const rowThree = res.data.reviews;
+        const rowFour = res.data.reviews;
+        const rowFive = res.data.reviews;
+        this.setState({ rowOne, rowTwo, rowThree, rowFour, rowFive });
       })
       .catch((err) => {
         console.log(err);
@@ -121,7 +126,6 @@ export default class Collage extends Component {
                 >
                   
                   <img
-                    alt = ""
                     src={review.user.avatar}
                     height="80vh"
                     style={{
@@ -129,23 +133,18 @@ export default class Collage extends Component {
                     }}/>
                   <div style={{paddingTop: 18, paddingLeft: 10}}>
                   <h6 className="font-atarian" style={{fontSize: '23px'}}>{review.user.username}</h6>
-                  <h6 className="font-atarian"  style={{fontSize: '12px', lineHeight: '3px'}}>Reviewed on 
-                  <Moment format=" DD/MM/YYYY">
-                   {review.date}
-                </Moment>
-                  </h6>
+                  <h6 className="font-atarian"  style={{fontSize: '12px', lineHeight: '3px'}}>Reviewed on {review.date}</h6>
                     {this.renderRating(review.rating)}
                   </div>
                 </div>
                 <Card.Text style={{padding:7, paddingBottom:10}}>                  
                   <TextTruncate
-                    line={7}
+                    line={5}
                     element="span"
                     truncateText="…"
-                    className="font-atarian"
-                    style={{fontSize: '16px', color: 'black'}}
+                    className="font-paragragh-small"
+                    style={{fontSize: '12px', color: 'black'}}
                     text={review.reviewText}
-                    textTruncateChild={<a href={`/reviews/${review._id}`}>Read Full Review</a>}
                   />
                 </Card.Text>
               </Card.Body>
@@ -195,7 +194,6 @@ export default class Collage extends Component {
                 >
                   
                   <img
-                  alt = ""
                     src={review.user.avatar}
                     height="80vh"
                     style={{
@@ -203,23 +201,19 @@ export default class Collage extends Component {
                     }}/>
                   <div style={{paddingTop: 18, paddingLeft: 10}}>
                   <h6 className="font-atarian" style={{fontSize: '23px'}}>{review.user.username}</h6>
-                  <h6 className="font-atarian"  style={{fontSize: '12px', lineHeight: '3px'}}>Reviewed on 
-                  <Moment format=" DD/MM/YYYY">
-                   {review.date}
-                </Moment>
-                </h6>
+                  <h6 className="font-atarian"  style={{fontSize: '12px', lineHeight: '3px'}}>Reviewed on {review.date}</h6>
                     {this.renderRating(review.rating)}
                   </div>
                 </div>
                 <Card.Text style={{padding:7, paddingBottom:10}}>                  
-                <TextTruncate
-                    line={7}
+                  <TextTruncate
+                    line={5}
                     element="span"
                     truncateText="…"
-                    className="font-atarian"
-                    style={{fontSize: '16px', color: 'black'}}
+                    className="font-paragragh-small"
+                    style={{fontSize: '12px', color: 'black'}}
                     text={review.reviewText}
-                    textTruncateChild={<a href="/reviews/">Read Full Review</a>}
+                    textTruncateChild={<a href="#" className="font-atarian" style={{fontSize: '15px', color: '#010B87'}}> Read Review </a>}
                   />
                 </Card.Text>
               </Card.Body>
