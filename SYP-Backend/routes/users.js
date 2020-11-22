@@ -132,40 +132,34 @@ usersRouter.get('/reviews/get', async(req, res) => {
 
 usersRouter.post('/reviews/add', auth, async(req, res) => {
     const {userId, gameId, submittedReview} = req.body;
-    const user = await User.findById({_id: userId});
-    const game = await Game.findById({_id: gameId});
 
     try {
+        const user = await User.findById({_id: userId}).populate('gameReviews');
+        const game = await Game.findById({_id: gameId}).populate('reviews');
+        console.log("USER", user);
+    
         const newReview = new Review({user, game, reviewText: submittedReview, rating: null});
         await newReview.save();
+        console.log("NEW REVIEW:", newReview)
 
-        await game
-            .reviews
-            .push(newReview);
+        await game.reviews.push(newReview);
         await game.save();
+        console.log("GAME:", game);
+        console.log("USER", user);
+        await user.gameReviews.push(newReview);
 
-        await user
-            .gameReviews
-            .push(newReview);
         await user.save();
-
-        res
-            .status(200)
-            .json(newReview);
+        console.log("Here?!")
+        res.status(200).json(newReview);
 
     } catch (error) {
-        res
-            .status(400)
-            .json({message: error})
+        res.status(400).json({message: error})
     }
-
 });
 
 usersRouter.post('/ratings/add', auth, async(req, res) => {
     const {rating, gameId, userId} = req.body;
-    const user = await User
-        .findById({_id: userId})
-        .populate('gameReviews');
+    const user = await User.findById({_id: userId}).populate('gameReviews');
     const game = await Game.findById({_id: gameId});
 
     const doesExist = (review) => {
@@ -186,14 +180,10 @@ usersRouter.post('/ratings/add', auth, async(req, res) => {
         const newReview = new Review({user, game, reviewText: null, rating});
         await newReview.save();
 
-        await game
-            .reviews
-            .push(newReview);
+        await game.reviews.push(newReview);
         await game.save();
 
-        await user
-            .gameReviews
-            .push(newReview);
+        await user.gameReviews.push(newReview);
         await user.save();
     }
 

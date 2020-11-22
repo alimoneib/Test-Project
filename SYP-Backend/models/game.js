@@ -14,6 +14,9 @@ let GameSchema = new Schema({
     screenshots: [{
         type: String
     }],
+    promoArt: [{
+        type: String
+    }],
     description: {
         type: String
     },

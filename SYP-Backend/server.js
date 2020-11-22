@@ -15,10 +15,14 @@ app.use(cookieParser());
 //Import Routes
 const gameRouter = require('./routes/games');
 const userRouter = require('./routes/users');
+const homepageRouter = require('./routes/homepage');
+const reviewsRouter = require('./routes/reviews');
 
 //Route Middlewares
 app.use('/games', gameRouter);
 app.use('/users', userRouter);
+app.use('/reviews', reviewsRouter);
+app.use('/', homepageRouter);
 
 //Connect to Database
 mongoose.connect(process.env.DB_CONNECT, { useNewUrlParser: true, useUnifiedTopology: true })
