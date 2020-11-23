@@ -35,6 +35,10 @@ let userSchema = new Schema({
         enum: ['user', 'admin', 'moderator'],
         required: true
     },
+    comments: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Comment'
+    }],
     achievements: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Achievement'
