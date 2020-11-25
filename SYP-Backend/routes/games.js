@@ -1,5 +1,6 @@
 const express = require('express');
 const gamesRouter = express.Router();
+const mongoose = require('mongoose');
 
 const Game = require('../models/game');
 const User = require('../models/user');
