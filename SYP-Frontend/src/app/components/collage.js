@@ -18,7 +18,6 @@ export default class Collage extends Component {
   }
 
   async componentDidMount() {
-    console.log(this.state.gameId);
     await axios
       .get(`http://localhost:4000/games/${this.state.gameId}/reviews`)
       .then((res) => {
@@ -95,9 +94,10 @@ export default class Collage extends Component {
             flexDirection: "row",
           }}
         >
-          {this.state.rowOne.map((review) => (
+          {this.state.rowOne.map((review, index) => (
             <Card
               className="card-border"
+              key = {index}
               style={{
                 width: "50%",
                 borderRadius: 20,
@@ -169,9 +169,10 @@ export default class Collage extends Component {
             flexDirection: "row",
           }}
         >
-          {this.state.rowTwo.map((review) => (
+          {this.state.rowTwo.map((review, index) => (
             <Card
               className="card-border"
+              key = {index}
               style={{
                 width: "50%",
                 borderRadius: 20,

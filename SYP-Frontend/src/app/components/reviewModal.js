@@ -48,18 +48,18 @@ export default class ReviewModal extends Component {
         }
 
         await axios
-            .post(`http://localhost:4000/users/reviews/add`, review, {
+            .post(`http://localhost:4000/reviews/add`, review, {
             headers: {
                 Authorization: `Bearer ${jwt}`
             }
         })
             .then(res => {
-                console.log("review", res.data);
                 window.location.href = `/reviews/${res.data._id}`;
             })
             .catch(err => {
                 console.log(err)
             })
+            
     };
 
     render() {

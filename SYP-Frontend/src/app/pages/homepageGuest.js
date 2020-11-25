@@ -29,9 +29,9 @@ export default class HomepageGuest extends Component {
     render() {
         const gameCovers = []
       
-        for (const [index, value] of this.state.popGames.entries()) {
+        for (const index of this.state.popGames.entries()) {
           gameCovers.push(
-              <img src={this.state.popGames} alt = "">
+              <img key={index} src={this.state.popGames} alt = "">
               </img>
           )
         }

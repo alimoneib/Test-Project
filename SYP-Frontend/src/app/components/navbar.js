@@ -45,7 +45,7 @@ export default class NavbarClass extends Component {
     async onLogout() {
         localStorage.removeItem('jwt');
         localStorage.removeItem('userId');
-        window.location.href = '/';
+        window.location.reload();
     }
 
     toggleLoginModal = e => {

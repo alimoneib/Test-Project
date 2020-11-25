@@ -43,32 +43,22 @@ export default function Footer() {
             <div className="container">
                 <div className="row">
                     <div className="col-md-8 col-sm-6 col-xs-12">
-                        <p className="copyright-text">Copyright &copy; 2020 All Rights Reserved by 
-                            <a href="#" style={{color: 'white'}}> Obelisk94</a>.
-                        </p>
+                        <p className="copyright-text">Copyright &copy; 2020 All Rights Reserved by Obelisk94.</p>
                     </div>
 
                     <div className="col-md-4 col-sm-6 col-xs-12">
                         <ul className="social-icons">
                             <li>
-                                <a className="facebook" href="#">
                                 <FontAwesomeIcon icon={faFacebookF}/>
-                                </a>
                             </li>
                             <li>
-                                <a className="twitter" href="#">
                                 <FontAwesomeIcon icon={faTwitter}/>
-                                </a>
                             </li>
                             <li>
-                                <a className="dribbble" href="#">
                                 <FontAwesomeIcon icon={faInstagram}/>
-                                </a>
                             </li>
                             <li>
-                                <a className="linkedin" href="#">
                                 <FontAwesomeIcon icon={faLinkedinIn}/>
-                                </a>
                             </li>
                         </ul>
                     </div>

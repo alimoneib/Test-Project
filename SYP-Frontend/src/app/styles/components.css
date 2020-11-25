@@ -188,7 +188,10 @@
   box-shadow: 0 5px 5px 0 rgba(0,0,0,0.5);
   border: 2px solid yellow;
 }
-
+.game-card-cover {
+    transform: translate(23%, -15%);
+    z-index: 2;
+  }
 /* COLOURS */
 .white {
     color: white !important;
@@ -207,7 +210,9 @@
 .bg-form {
     background-color: #6BB09F !important;
 }
-
+.bg-review-page {
+    background-image: radial-gradient(circle, #5f8d8c, #548189, #4e7585, #4c697e, #4c5c74);
+}
 /* BORDERS */
 .border-rounded {
     border-radius: 5px;

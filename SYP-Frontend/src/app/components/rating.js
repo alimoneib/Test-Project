@@ -76,6 +76,9 @@ export default class Rating extends Component {
             .then(res => {
                 console.log(res.data)
                 switch (res.data.rating) {
+                    default:
+                        console.log("Hello");
+                        break;
                     case 1:
                         this.setState({initialOne: true});
                         break;

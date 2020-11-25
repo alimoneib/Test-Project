@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import axios from "axios";
 import Jumbotron from "react-bootstrap/Jumbotron";
-import Button from "react-bootstrap/Button";
-import ButtonGroup from "react-bootstrap/ButtonGroup";
 import Image from "react-bootstrap/Image";
 import Carousel from "react-bootstrap/Carousel";
+import Button from "react-bootstrap/Button";
+import ButtonGroup from "react-bootstrap/ButtonGroup";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Moment from 'react-moment';
 
@@ -46,11 +46,13 @@ export default class GamePage extends Component {
 
   async componentDidMount() {
     const gameId = this.state.id;
+    console.log("game Id", gameId)
     const userId = getUserId();
 
     await axios
-      .get(`http://localhost:4000/games/:${gameId}`)
+      .get(`http://localhost:4000/games/${gameId}`)
       .then((res) => {
+        console.log("gere");
         this.setState({ game: res.data });
       })
       .catch((err) => {
@@ -335,7 +337,7 @@ export default class GamePage extends Component {
             }}
           >
             <Carousel
-              claassName="carousel"
+              className="carousel"
               style={{
                 width: "1024px",
                 margin: "auto",
